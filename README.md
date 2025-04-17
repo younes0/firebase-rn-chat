@@ -47,7 +47,7 @@ firebase apps:sdkconfig WEB your-app-id # ouputs configuration data that we will
 ### Service Account file
 
 Create via the Firebase Admin UI : Project Overview > Project Settings > Service Accounts
-Copy the JSON file to "app/config/serviceAccount.json"
+Copy the JSON file to `app/config/serviceAccount.json`
 
 ## Init Expo App
 

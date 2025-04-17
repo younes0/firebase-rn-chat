@@ -40,9 +40,9 @@ const AppContent = () => {
   // render
   // ---------------------------------------------------------------------------
   return isLoadingProfile ? (
-    "Loading Profile"
+    "Loading Profile..."
   ) : isInitiatingUser ? (
-    "Creating User Profile & Data Example for demo purposes"
+    "Creating User Profile & Data Example for demo purposes..."
   ) : (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
