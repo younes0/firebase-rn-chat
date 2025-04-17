@@ -1,0 +1,89 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // helpers
+    // ------------------------------------------------------------------------
+    function isOwner(uid) {
+      return request.auth.uid == uid;
+    }
+
+    function isValidMessageUpdate(data) {
+      return data.authorId is string
+        && data.text is string
+        && data.createdAt is timestamp
+    }
+
+    function isValidThreadUpdate(data) {
+      return
+        (!data.keys().hasAny(['isArchived']) || data.isArchived is bool) &&
+        (!data.keys().hasAny(['isBlocked']) || data.isBlocked is bool) &&
+        (!data.keys().hasAny(['isMuted']) || data.isMuted is bool) &&
+        (!data.keys().hasAny(['isLastMessageMine']) || data.isLastMessageMine is bool) &&
+        (!data.keys().hasAny(['isLastPeerMessageSeen']) || data.isLastPeerMessageSeen is bool) &&
+        (!data.keys().hasAny(['lastMessageContentType']) || data.lastMessageContentType in ['Text', 'Audio', 'Image']) &&
+        (!data.keys().hasAny(['lastMessageCreatedAt']) || data.lastMessageCreatedAt is timestamp);
+    }
+
+    // routing
+    // ------------------------------------------------------------------------
+    match /messages/{docId} {
+      function isParticipant() {
+        return docId.matches(request.auth.uid+"_.*") || docId.matches(".*_"+request.auth.uid)
+      }
+
+      allow read: if isParticipant()
+
+      match /collection {
+        allow read: if isParticipant()
+      }
+
+      match /collection/{document=**} {
+        allow read: if isParticipant()
+
+        allow create: if
+          isParticipant()
+          && isOwner(request.resource.data.authorId)
+          && isValidMessageUpdate(request.resource.data)
+
+        allow update:
+          if isParticipant()
+          && isOwner(resource.data.authorId)
+          && isValidMessageUpdate(request.resource.data)
+      }
+    }
+
+    match /threads {
+      match /{userId} {
+        allow read: if isOwner(userId);
+
+        match /collection {
+          allow read: if isOwner(userId);
+        }
+
+        match /collection/{peerId} {
+          allow read: if isOwner(userId) || isOwner(peerId);
+          allow update: if
+            isValidThreadUpdate(request.resource.data)
+            && (
+              isOwner(userId)
+
+              || (isOwner(peerId) && !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+                'isBlocked',
+                'isMuted',
+              ]))  // these keys can't be changed by peer
+          );
+        }
+      }
+    }
+
+    match /userProfiles/{profileId} {
+      allow read: if true;
+      allow write: if isOwner(profileId);
+    }
+
+    match /pushTokens/{deviceId} {
+      allow create, delete, get, update: if request.auth != null;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "typing": {
+      "$threadFid": {
+        "$uid": {
+          ".read": "auth !== null && ((' ' + $threadFid).contains(' ' + auth.uid + '_') || ($threadFid + ' ').contains('_' + auth.uid + ' '))",
+          ".write": "auth !== null && auth.uid == $uid  && ((' ' + $threadFid).contains(' ' + auth.uid + '_') || ($threadFid + ' ').contains('_' + auth.uid + ' '))",
+          ".validate": "newData.isBoolean()"
+        }
+      }
+    }
+  }
+}

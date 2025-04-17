@@ -1,0 +1,117 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "collection",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isArchived",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isBlocked",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isLastMessageMine",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isLastPeerMessageSeen",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isMuted",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "lastMessageCreatedAt",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "lastMessageId",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "collection",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isArchived",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isBlocked",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "lastMessageCreatedAt",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "lastMessageId",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "collection",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isArchived",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isBlocked",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isLastMessageMine",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isLastPeerMessageSeen",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isMuted",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "lastMessageCreatedAt",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "lastMessageId",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "collection",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isArchived",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isBlocked",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "lastMessageCreatedAt",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "lastMessageId",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
