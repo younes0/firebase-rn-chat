@@ -17,7 +17,8 @@ Complete 1 to 1 Chat feature that includes:
 For advanced features, consider using [Stream](https://getstream.io/chat/) which offers: file uploads, reply, thread conversations, search, moderation tools etc.
 
 ### Demo Video
-(Soon)
+
+[![Watch the demo](https://img.youtube.com/vi/97LyX8lZA4w/0.jpg)](https://youtu.be/97LyX8lZA4w)
 
 ## Setup 
 
@@ -69,7 +70,7 @@ pnpm start
 
 ### General
 
-- Thread Creation is implemented on the server side: this design choice ensures that proper checks can be performed before allowing one user to chat with another user.
+- Thread Creation is implemented on the server side (Expo API routes): this design choice ensures that proper checks can be performed before allowing one user to chat with another user.
 - Demo Data: Fake data is created for the demo to quickly showcase the chat feature.
 - Does not use React Native Gifted Chat (complex & questionable architecture)
 
